@@ -3,6 +3,11 @@
 
 Proyecto **Spring Boot** con **Spring Cloud**, PostgreSQL/MySQL, Docker y Kubernetes. Este microservicio (`msvc-usuarios`) forma parte de un ecosistema de microservicios, utilizando OpenFeign para comunicación entre servicios.
 
+# Microservicio Usuarios - Spring Cloud
+
+Proyecto **Spring Cloud** con PostgreSQL/MySQL y Spring Boot.  
+Actualmente en desarrollo como parte del aprendizaje de microservicios con Spring Cloud.
+
 ---
 
 ## Tecnologías utilizadas
@@ -11,81 +16,84 @@ Proyecto **Spring Boot** con **Spring Cloud**, PostgreSQL/MySQL, Docker y Kubern
 - Spring Boot 3.5.6
 - Spring Cloud 2025.0.0
 - Spring Data JPA
-- Spring Web
 - Spring Cloud OpenFeign
-- MySQL
-- Docker
-- Kubernetes
+- PostgreSQL / MySQL
+- JUnit para testing
 
 ---
 
-## Requisitos
+## Configuración e instalación
 
-- Java 21
-- Maven 4+
-- Docker
-- Minikube o un cluster Kubernetes
-- MySQL/PostgreSQL
+Sigue estos pasos para ejecutar el proyecto en tu máquina local:
 
----
+### 1. Clonar el repositorio
 
-## Instalación y ejecución
-
-1. Clona el repositorio:
-   ```bash
-   git clone <URL_DEL_REPOSITORIO>
-   cd msvc-usuarios
+```bash
+git clone https://github.com/tu-usuario/msvc-usuarios.git
+cd msvc-usuarios
 ````
 
-2. Configura la base de datos en `application.properties`:
+### 2. Configurar la base de datos
 
-   ```properties
-   spring.datasource.url=jdbc:mysql://localhost:3306/usuarios
-   spring.datasource.username=root
-   spring.datasource.password=tu_contraseña
-   spring.jpa.hibernate.ddl-auto=update
-   ```
+* **MySQL**: Actualiza `application.properties` con tus credenciales.
+* **PostgreSQL**: Ajusta la URL, usuario y contraseña si prefieres usar PostgreSQL.
 
-3. Ejecuta el proyecto localmente:
+Ejemplo (`application.properties`):
 
-   ```bash
-   mvn spring-boot:run
-   ```
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/usuarios_db
+spring.datasource.username=root
+spring.datasource.password=root
+spring.jpa.hibernate.ddl-auto=update
+```
 
-4. Para Docker:
+### 3. Ejecutar el proyecto
 
-   ```bash
-   docker build -t msvc-usuarios .
-   docker run -p 8080:8080 msvc-usuarios
-   ```
+Desde la raíz del proyecto:
 
-5. Para Kubernetes (ejemplo con Minikube):
+```bash
+mvn clean install
+mvn spring-boot:run
+```
 
-   ```bash
-   kubectl apply -f k8s/deployment.yaml
-   kubectl apply -f k8s/service.yaml
-   ```
+El microservicio estará disponible en:
+
+```
+http://localhost:8080
+```
+
+---
+
+## Endpoints principales
+
+* `GET /usuarios` - Listar todos los usuarios
+* `GET /usuarios/{id}` - Obtener usuario por ID
+* `POST /usuarios` - Crear un nuevo usuario
+* `PUT /usuarios/{id}` - Actualizar un usuario existente
+* `DELETE /usuarios/{id}` - Eliminar un usuario
 
 ---
 
-## Endpoints
+## Testing
 
-Ejemplo de endpoints REST disponibles:
+Ejecutar tests unitarios y de integración:
 
-| Método | Endpoint       | Descripción               |
-| ------ | -------------- | ------------------------- |
-| GET    | /usuarios      | Listar todos los usuarios |
-| GET    | /usuarios/{id} | Obtener usuario por ID    |
-| POST   | /usuarios      | Crear un nuevo usuario    |
-| PUT    | /usuarios/{id} | Actualizar usuario        |
-| DELETE | /usuarios/{id} | Eliminar usuario          |
+```bash
+mvn test
+```
 
 ---
+
+## Próximos pasos de aprendizaje
+
+* Integrar Docker para contenerización
+* Implementar Kubernetes para despliegue
+* Agregar más microservicios y comunicación con Spring Cloud
 
 ## Autor
 
-**Alicia Ortega**
-Email: [Aliciaortega1986@gmail.com](mailto:Aliciaortega1986@gmail.com)
+**Nombre:** Alicia Ortega  
+**Email:** [Aliciaortega1986@gmail.com](mailto:Aliciaortega1986@gmail.com)  
 
 ---
 
